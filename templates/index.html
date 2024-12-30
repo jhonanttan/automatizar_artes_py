@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de Artes</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Criador de Artes de Promoção</h1>
+        <p>Preencha os dados abaixo para gerar sua arte de promoção personalizada.</p>
+        <form action="/" method="POST">
+            <div class="form-group">
+                <label for="trajeto">Trajeto:</label>
+                <select name="trajeto" id="trajeto" required>
+                    <option value="sp_jeri">São Paulo para Jeri</option>
+                    <option value="jeri_sp">Jeri para São Paulo</option>
+                    <option value="for_sp">Fortaleza para São Paulo</option>
+                    <option value="sp_for">São Paulo para Fortaleza</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipo_voo">Tipo de voo:</label>
+                <select name="tipo_voo" id="tipo_voo" required>
+                    <option value="ida_volta">Ida e Volta</option>
+                    <option value="ida">Somente Ida</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ida">Opções de ida:</label>
+                <textarea name="ida" id="ida" placeholder="Insira as opções de ida" required></textarea>
+            </div>
+            <div class="form-group" id="volta-container">
+                <label for="volta">Opções de volta:</label>
+                <textarea name="volta" id="volta" placeholder="Insira as opções de volta"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="preco">Preço da passagem:</label>
+                <input type="number" name="preco" id="preco" placeholder="Ex: 1500" required>
+            </div>
+            <div class="form-group">
+                <label for="preco_cartao">Preço no cartão:</label>
+                <input type="number" name="preco_cartao" id="preco_cartao" placeholder="Ex: 1800" required>
+            </div>
+            <button type="submit">Gerar Arte</button>
+        </form>
+    </div>
+    <script>
+        const tipoVooSelect = document.getElementById("tipo_voo");
+        const voltaContainer = document.getElementById("volta-container");
+
+        tipoVooSelect.addEventListener("change", () => {
+            if (tipoVooSelect.value === "ida") {
+                voltaContainer.style.display = "none";
+            } else {
+                voltaContainer.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>

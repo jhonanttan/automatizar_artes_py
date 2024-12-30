@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('/static/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Poppins ExtraBold';
+    src: url('/static/Poppins-ExtraBold.ttf') format('truetype');
+}
+
+/* GLOBAL STYLES */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #17ACD0, #0E8199);
+    margin: 0;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    background: #fff;
+    color: #333;
+    padding: 30px 40px;
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-family: 'Poppins ExtraBold', sans-serif;
+    color: #17ACD0;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* FORM ELEMENTS */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+    font-size: 14px;
+}
+
+textarea, input, select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+textarea:focus, input:focus, select:focus {
+    border-color: #17ACD0;
+    outline: none;
+    box-shadow: 0 0 8px rgba(23, 172, 208, 0.5);
+}
+
+/* BUTTON */
+button {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    margin-top: 20px;
+    background: #17ACD0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-family: 'Poppins ExtraBold', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: #0E8199;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(23, 172, 208, 0.3);
+}
+
+/* SELECT */
+select {
+    cursor: pointer;
+}
+
+select option {
+    font-size: 16px;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ANIMATIONS */
+
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 576px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+}
