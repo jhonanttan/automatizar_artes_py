@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, url_for
 from PIL import Image, ImageDraw, ImageFont
 import os
 
@@ -8,16 +8,16 @@ def criar_arte(trajeto, tipo_voo, ida, volta, preco, preco_cartao):
     try:
         # Escolher a base de arte com base no trajeto e tipo de voo
         if trajeto == "sp_jeri":
-            caminho_base = "static/sp_jeri_ida.png" if tipo_voo == "ida" else "static/sp_jeri_ida_e_volta.png"
+            caminho_base = os.path.join(app.static_folder, "sp_jeri_ida.png" if tipo_voo == "ida" else "sp_jeri_ida_e_volta.png")
         elif trajeto == "jeri_sp":
-            caminho_base = "static/jeri_sp_ida.png" if tipo_voo == "ida" else "static/jeri_sp_ida_e_volta.png"
+            caminho_base = os.path.join(app.static_folder, "jeri_sp_ida.png" if tipo_voo == "ida" else "jeri_sp_ida_e_volta.png")
         elif trajeto == "for_sp":
-            caminho_base = "static/for_sp_ida.png" if tipo_voo == "ida" else "static/for_sp_ida_e_volta.png"
+            caminho_base = os.path.join(app.static_folder, "for_sp_ida.png" if tipo_voo == "ida" else "for_sp_ida_e_volta.png")
         elif trajeto == "sp_for":
-            caminho_base = "static/sp_for_ida.png" if tipo_voo == "ida" else "static/sp_for_ida_e_volta.png"
+            caminho_base = os.path.join(app.static_folder, "sp_for_ida.png" if tipo_voo == "ida" else "sp_for_ida_e_volta.png")
         else:
             raise ValueError("Trajeto inválido")
-        
+
         if not os.path.exists(caminho_base):
             raise FileNotFoundError(f"{caminho_base} não encontrado")
 
@@ -25,9 +25,9 @@ def criar_arte(trajeto, tipo_voo, ida, volta, preco, preco_cartao):
         draw = ImageDraw.Draw(imagem)
 
         # Fontes - Usando caminho absoluto
-        caminho_fonte_medium = os.path.join(os.path.dirname(__file__), "static/Poppins-Medium.ttf")
-        caminho_fonte_extra_bold = os.path.join(os.path.dirname(__file__), "static/Poppins-ExtraBold.ttf")
-        
+        caminho_fonte_medium = os.path.join(app.static_folder, "Poppins-Medium.ttf")
+        caminho_fonte_extra_bold = os.path.join(app.static_folder, "Poppins-ExtraBold.ttf")
+
         if not os.path.exists(caminho_fonte_medium):
             raise FileNotFoundError("Fonte Poppins-Medium.ttf não encontrada")
         if not os.path.exists(caminho_fonte_extra_bold):
@@ -78,7 +78,7 @@ def criar_arte(trajeto, tipo_voo, ida, volta, preco, preco_cartao):
         draw.text((800, 1869), preco_cartao_formatado, fill="black", font=fonte_57, anchor="lt")
 
         # Salvando a imagem final
-        nome_arquivo_saida = "static/arte_promocao.png"
+        nome_arquivo_saida = os.path.join(app.static_folder, "arte_promocao.png")
         imagem.save(nome_arquivo_saida)
         return nome_arquivo_saida
     except Exception as e:
@@ -101,4 +101,3 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
